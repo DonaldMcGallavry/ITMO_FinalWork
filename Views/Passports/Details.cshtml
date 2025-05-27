@@ -1,0 +1,72 @@
+﻿@model ITMO_FinalWork.Models.Passport
+
+@{
+    ViewData["Title"] = "Детали паспорта";
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Паспортные данные</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row mb-0">
+                <!-- Серия -->
+                <dt class="col-sm-3 text-end">
+                    @Html.DisplayNameFor(model => model.Series)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Series)
+                </dd>
+
+                <!-- Номер -->
+                <dt class="col-sm-3 text-end">
+                    @Html.DisplayNameFor(model => model.Number)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Number)
+                </dd>
+
+                <!-- Дата выдачи -->
+                <dt class="col-sm-3 text-end">
+                    @Html.DisplayNameFor(model => model.IssueDate)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.IssueDate)
+                </dd>
+
+                <!-- Срок действия -->
+                <dt class="col-sm-3 text-end">
+                    @Html.DisplayNameFor(model => model.ExpiryDate)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.ExpiryDate)
+                </dd>
+            </dl>
+        </div>
+        <div class="card-footer bg-light">
+            <div class="d-flex justify-content-between">
+                <a asp-action="Edit" asp-route-id="@Model?.PassportID" class="btn btn-warning">
+                    <i class="bi bi-pencil"></i> Редактировать
+                </a>
+                <a asp-action="Index" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Назад к списку
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    dt {
+        font-weight: 500;
+        color: #6c757d;
+    }
+    dd {
+        padding: 0.25rem 0;
+    }
+</style>

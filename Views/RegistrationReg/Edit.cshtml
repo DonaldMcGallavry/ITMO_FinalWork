@@ -1,0 +1,121 @@
+﻿@model ITMO_FinalWork.Models.RegistrationReg
+
+@{
+    ViewData["Title"] = "Редактирование регистрационного учета";
+}
+
+<div class="container">
+    <h2 class="mb-4">@ViewData["Title"]</h2>
+
+    <form asp-action="Edit" class="needs-validation" novalidate>
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+        <input type="hidden" asp-for="RecordID" />
+
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5>Личные данные</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="LastName" class="form-label">Фамилия*</label>
+                        <input asp-for="LastName" class="form-control" required />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="FirstName" class="form-label">Имя*</label>
+                        <input asp-for="FirstName" class="form-control" required />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="MiddleName" class="form-label">Отчество</label>
+                        <input asp-for="MiddleName" class="form-control" />
+                        <span asp-validation-for="MiddleName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="BirthDate" class="form-label">Дата рождения*</label>
+                        <input asp-for="BirthDate" type="date" class="form-control" required />
+                        <span asp-validation-for="BirthDate" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="Gender" class="form-label">Пол*</label>
+                        <select asp-for="Gender" class="form-select" required>
+                            <option value="">Выберите</option>
+                            <option value="M">Мужской</option>
+                            <option value="F">Женский</option>
+                        </select>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5>Паспортные данные</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="Passport.Series" class="form-label">Серия паспорта*</label>
+                        <input asp-for="Passport.Series" class="form-control" required
+                               maxlength="40" pattern="[A-Za-z0-9]{1,40}" />
+                        <span asp-validation-for="Passport.Series" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="Passport.Number" class="form-label">Номер паспорта*</label>
+                        <input asp-for="Passport.Number" class="form-control" required
+                               maxlength="10" pattern="[A-Za-z0-9]{1,10}" />
+                        <span asp-validation-for="Passport.Number" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="Passport.IssueDate" class="form-label">Дата выдачи*</label>
+                        <input asp-for="Passport.IssueDate" type="date" class="form-control" required />
+                        <span asp-validation-for="Passport.IssueDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="Passport.ExpiryDate" class="form-label">Действителен до</label>
+                        <input asp-for="Passport.ExpiryDate" type="date" class="form-control" />
+                        <span asp-validation-for="Passport.ExpiryDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5>Регистрационные данные</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="RegistrationDate" class="form-label">Дата регистрации*</label>
+                        <input asp-for="RegistrationDate" type="date" class="form-control" required />
+                        <span asp-validation-for="RegistrationDate" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="RegistrationAddress" class="form-label">Адрес регистрации*</label>
+                        <input asp-for="RegistrationAddress" class="form-control" required />
+                        <span asp-validation-for="RegistrationAddress" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="submit" class="btn btn-primary me-md-2">Сохранить изменения</button>
+            <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Главная страница";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Система миграционного и регистрационного учета</h1>
+
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h2>Миграционный учет</h2>
+            <a asp-controller="MigrationReg" asp-action="Create" class="btn btn-primary btn-lg">Заполнить форму</a>
+        </div>
+        <div class="col-md-6">
+            <h2>Регистрационный учет</h2>
+            <a asp-controller="RegistrationReg" asp-action="Create" class="btn btn-success btn-lg">Заполнить форму</a>
+        </div>
+    </div>
+</div>

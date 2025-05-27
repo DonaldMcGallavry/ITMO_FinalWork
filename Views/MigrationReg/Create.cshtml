@@ -1,0 +1,224 @@
+﻿@model ITMO_FinalWork.Models.MigrationReg
+@{
+    ViewData["Title"] = "Регистрация мигранта";
+}
+
+<div class="container">
+    <h2 class="mb-4">@ViewData["Title"]</h2>
+
+    <form asp-action="Create" class="needs-validation" novalidate>
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5>Личные данные</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="LastName" class="form-label">Фамилия*</label>
+                        <input asp-for="LastName" class="form-control" required />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="FirstName" class="form-label">Имя*</label>
+                        <input asp-for="FirstName" class="form-control" required />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="MiddleName" class="form-label">Отчество*</label>
+                        <input asp-for="MiddleName" class="form-control" required />
+                        <span asp-validation-for="MiddleName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="BirthDate" class="form-label">Дата рождения*</label>
+                        <input asp-for="BirthDate" type="date" class="form-control" required />
+                        <span asp-validation-for="BirthDate" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="Gender" class="form-label">Пол*</label>
+                        <select asp-for="Gender" class="form-select" required>
+                            <option value="">Выберите</option>
+                            <option value="M">Мужской</option>
+                            <option value="F">Женский</option>
+                        </select>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5>Гражданство</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Citizenship" class="form-label">Гражданство*</label>
+                        <input asp-for="Citizenship" class="form-control" required />
+                        <span asp-validation-for="Citizenship" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="BirthCountry" class="form-label">Страна рождения*</label>
+                        <input asp-for="BirthCountry" class="form-control" required />
+                        <span asp-validation-for="BirthCountry" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5>Паспортные данные</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="Passport.Series" class ="form-label">Серия паспорта*</label>
+                        <input asp-for="Passport.Series" class="form-control"
+                               placeholder="1234567890"
+                               pattern="\d{1,10}"
+                               maxlength="10"
+                               title="Введите серию"
+                               required />
+                        <div class="invalid-feedback">
+                            В серии не более 10 цифр
+                        </div>
+                        <span asp-validation-for="Passport.Series" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="Passport.Number" class="form-label">Номер паспорта*</label>
+                        <input asp-for="Passport.Number" class="form-control"
+                               placeholder="1234567890"
+                               pattern="\d{1,10}"
+                               maxlength="10"
+                               title="Введите серию"
+                               required />
+                        <div class="invalid-feedback">
+                            В номере не более 10 цифр
+                        </div>
+                        <span asp-validation-for="Passport.Number" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="Passport.IssueDate" class="form-label">Дата выдачи*</label>
+                        <input asp-for="Passport.IssueDate" type="date" class="form-control" required />
+                        <span asp-validation-for="Passport.IssueDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="Passport.ExpiryDate" class="form-label">Действителен до</label>
+                        <input asp-for="Passport.ExpiryDate" type="date" class="form-control" />
+                        <span asp-validation-for="Passport.ExpiryDate" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <input type="hidden" asp-for="PassportId" id="passportId" />
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5>Миграционная карта</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="Card.CardSeries" class="form-label">Серия карты*</label>
+                        <input asp-for="Card.CardSeries" class="form-control" maxlength="5" required />
+                        <span asp-validation-for="Card.CardSeries" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="Card.CardNumber" class="form-label">Номер карты</label>
+                        <input asp-for="Card.CardNumber" class="form-control" required />
+                        <span asp-validation-for="Card.CardNumber" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="Card.IssueDate" class="form-label">Дата выдачи</label>
+                        <input asp-for="Card.IssueDate" type="date" class="form-control" required />
+                        <span asp-validation-for="Card.IssueDate" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="Card.ExpiryDate" class="form-label">Действительна до</label>
+                        <input asp-for="Card.ExpiryDate" type="date" class="form-control" />
+                        <span asp-validation-for="Card.ExpiryDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <input type="hidden" asp-for="CardId" id="CardID" />
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5>Информация о пребывании</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="EntryDate" class="form-label">Дата въезда*</label>
+                        <input asp-for="EntryDate" type="date" class="form-control" required />
+                        <span asp-validation-for="EntryDate" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="RegistrationDate" class="form-label">Дата регистрации*</label>
+                        <input asp-for="RegistrationDate" type="date" class="form-control" required />
+                        <span asp-validation-for="RegistrationDate" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="RegistrationEndDate" class="form-label">Дата окончания регистрации*</label>
+                        <input asp-for="RegistrationEndDate" type="date" class="form-control" />
+                        <span asp-validation-for="RegistrationEndDate" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="Reason.ReasonType" class="form-label">Цель визита*</label>
+                        <select asp-for="Reason.ReasonType" class="form-select" required>
+                            <option value="">Выберите цель</option>
+                            <option value="транзит">Транзит</option>
+                            <option value="туризм">Туризм</option>
+                            <option value="частное">Частное</option>
+                            <option value="работа">Работа</option>
+                        </select>
+                        <span asp-validation-for="Reason.ReasonType" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="Reason.DocumentType" class="form-label">Тип документа*</label>
+                        <select asp-for="Reason.DocumentType" class="form-select" required>
+                            <option value="">Выберите тип</option>
+                            <option value="разрешение на проживание">разрешение на проживание</option>
+                            <option value="вид на жительство">вид на жительство</option>
+                            <option value="виза">виза</option>
+                            <option value="патент">патент</option>
+                            <option value="нет">Нет</option>
+                        </select>
+                    </div>
+                    <span asp-validation-for="Reason.ReasonType" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="RegistrationAddress" class="form-label">Адрес регистрации*</label>
+                    <textarea asp-for="RegistrationAddress" class="form-control" rows="3" required></textarea>
+                    <span asp-validation-for="RegistrationAddress" class="text-danger"></span>
+                </div>
+                <input type="hidden" asp-for="ReasonId" id="ReasonID" />
+            </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="submit" value="Create" class="btn btn-primary me-md-2">Зарегистрировать</button>
+            <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+
+
+}

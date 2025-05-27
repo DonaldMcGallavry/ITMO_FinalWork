@@ -1,0 +1,88 @@
+﻿@model ITMO_FinalWork.Models.Passport
+
+@{
+    ViewData["Title"] = "Редактирование паспорта";
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Редактирование паспортных данных</h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="PassportID" />
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label asp-for="Series" class="form-label"></label>
+                        <input asp-for="Series" class="form-control" 
+                               placeholder="1234"
+                               maxlength="4"
+                               pattern="\d{4}"
+                               title="4 цифры"
+                               required />
+                        <span asp-validation-for="Series" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="Number" class="form-label"></label>
+                        <input asp-for="Number" class="form-control" class="form-control"
+                               placeholder="123456"
+                               maxlength="6"
+                               pattern="\d{6}"
+                               title="6 цифр"
+                               required />
+                        <span asp-validation-for="Number" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="IssueDate" class="form-label"></label>
+                        <input asp-for="IssueDate" class="form-control" type="date" required />
+                        <span asp-validation-for="IssueDate" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="ExpiryDate" class="form-label"></label>
+                        <input asp-for="ExpiryDate" class="form-control" type="date" />
+                        <span asp-validation-for="ExpiryDate" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-warning">
+                        <i class="bi bi-save"></i> Сохранить изменения
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer bg-light">
+            <a asp-action="Index" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> Назад к списку
+            </a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+    .card {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .form-label {
+        font-weight: 500;
+        color: #495057;
+    }
+
+    .form-control {
+        border-radius: 0.25rem;
+    }
+</style>
